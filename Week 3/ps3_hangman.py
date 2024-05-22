@@ -9,7 +9,7 @@
 
 import random
 
-WORDLIST_FILENAME = "/Users/meyer/Desktop/OSSU CS degree/MITx  6.00.1x/Week 3/problem1/words.txt"
+WORDLIST_FILENAME = "/Users/meyer/Desktop/OSSU CS degree/MITx  6.00.1x/Week 3/words.txt"
 
 def loadWords():
     """
@@ -70,7 +70,7 @@ def getGuessedWord(secretWord, lettersGuessed):
 
     for char in secretWord:
       if char in lettersGuessed:
-        output += f"{char} "
+        output += char + " "
       else:
         output += "_ "
 
@@ -116,17 +116,17 @@ def hangman(secretWord):
     lettersGuessed = []
 
     print("Welcome to the game, Hangman!")
-    print(f"I am thinking of a word that is {len(secretWord)} letters long.")
+    print("I am thinking of a word that is", len(secretWord), "letters long.")
 
     while guess > 0 and isWordGuessed(secretWord, lettersGuessed) == False:
       print("----------------------")
-      print(f"You have {guess} guesses left.")
-      print(f"Available letters: {getAvailableLetters(lettersGuessed)}")
+      print("You have", guess, "guesses left.")
+      print("Available letters:", getAvailableLetters(lettersGuessed))
 
-      letter = input("Please guess a letter: ")
+      letter = input("Please guess a letter: ").lower()
 
       if letter in lettersGuessed:
-        print(f"Oops! You've already guessed that letter: {getGuessedWord(secretWord, lettersGuessed)}")
+        print("Oops! You've already guessed that letter:", getGuessedWord(secretWord, lettersGuessed))
       elif letter in secretWord:
         lettersGuessed.append(letter)
         print("Good guess:", getGuessedWord(secretWord, lettersGuessed))
@@ -140,7 +140,7 @@ def hangman(secretWord):
         print("Congratulations, you won!")
       elif guess == 0:
         print("----------------------")
-        print("Oh no, you lost! The word was", secretWord)
+        print("Sorry, you ran out of guesses. The word was", secretWord)
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
