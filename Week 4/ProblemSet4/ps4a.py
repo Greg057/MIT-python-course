@@ -147,8 +147,10 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    newHand = hand.copy()
+    for letter in word:
+        newHand[letter] -= 1
+    return newHand
 
 
 #
@@ -166,6 +168,19 @@ def isValidWord(word, hand, wordList):
     wordList: list of lowercase strings
     """
     # TO DO ... <-- Remove this comment when you code this function
+    hand_copy = hand.copy()
+
+    if word not in wordList:
+        return False
+    
+    for letter in word:
+        try:
+            hand_copy[letter] -= 1
+            if hand_copy[letter] < 0:
+                return False
+        except:
+            return False        
+    return True
 
 
 #
