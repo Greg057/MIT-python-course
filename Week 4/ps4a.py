@@ -194,10 +194,7 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    length = 0
-    for value in hand.values():
-        length += value
-    return length
+    return sum(hand.values())
 
 
 def playHand(hand, wordList, n):
@@ -225,7 +222,7 @@ def playHand(hand, wordList, n):
     # Keep track of the total score
     score = 0
     # As long as there are still letters left in the hand:
-    while sum(hand.values()) > 0:
+    while calculateHandlen(hand) > 0:
         # Display the hand
         print("Current Hand: ", end="")
         displayHand(hand)
@@ -255,6 +252,7 @@ def playHand(hand, wordList, n):
 
     # Game is over (user entered a '.' or ran out of letters), so tell user the total score
     print("Goodbye! Total score:", score, "points.")
+    print()
 
 #
 # Problem #5: Playing a game
@@ -272,11 +270,23 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
-    # TO DO ... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this line when you code the function
-   
-
-
+    hands = []
+    while True:
+        command = input("Enter n to deal a new hand, r to replay the last hand, or e to end game: ")
+        if command == "n":
+            hand = dealHand(HAND_SIZE)
+            hands.append(hand)
+            playHand(hand, wordList, HAND_SIZE)
+        elif command == "r":
+            if len(hands) == 0:
+                print("You have not played a hand yet. Please play a new hand first!")
+                print()
+            else:
+                playHand(hands[-1], wordList, HAND_SIZE)
+        elif command == "e":
+            break
+        else:
+            print("Invalid command.")
 
 #
 # Build data structures used for entire session and play game
