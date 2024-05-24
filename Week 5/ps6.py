@@ -255,12 +255,20 @@ class CiphertextMessage(Message):
         return (shiftValue, decryptMessage)
                 
 
-#Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('hello', 2)
-print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
+# #Example test case (PlaintextMessage)
+# plaintext = PlaintextMessage('hello', 2)
+# print('Expected Output: jgnnq')
+# print('Actual Output:', plaintext.get_message_text_encrypted())
     
-#Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('jrrg, pruqlqj')
-print('Expected Output:', (23, 'good, morning'))
-print('Actual Output:', ciphertext.decrypt_message())
+# #Example test case (CiphertextMessage)
+# ciphertext = CiphertextMessage('jrrg, pruqlqj')
+# print('Expected Output:', (23, 'good, morning'))
+# print('Actual Output:', ciphertext.decrypt_message())
+
+def decrypt_story():
+    story = get_story_string()
+    message = CiphertextMessage(story)
+    return message.decrypt_message()
+
+print(decrypt_story())
+
